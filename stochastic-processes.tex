@@ -1,5 +1,76 @@
 
+A family of random variables, indexed by time
+
+\subsubsection{Classifications}
+
+\paragraph{State Space} The set of possible values (states).
+\paragraph{Discrete State Space} Example: the number of jobs in the system.
+($S = {0,1,2,3...}$). We will only deal with the discrete case in this class. To
+make notation easier the state is usually identified by the number.
+
+\paragraph{Continuous State Space} Example: motion of a particle. We will not be
+studying this in this class.
+
+\paragraph{Time Parameter} There are two ways to observe times in Stochastic
+processes.
+
+\paragraph{Discrete Time Parameter} For example, we consider the states at
+$X_0$, $X_1$, ... $X_n$. For example, looking at the state of the system
+$i^{th}$ hour.
+
+%TODO fix diagram
+%\input{./diagrams/stochastic-processes/discrete-time.tex}
+
+\paragraph{Continuous Time Parameter}
+The states are function of time $t$ ($X(t)$).
+
+\subsubsection{Discrete State Space and Time} There might be a dependency
+between the previous time interval $X_i$'s and the states those time interval
+can be in that need to be model in the current $X_n$. 
+\begin{equation*} \begin{split}
+	P(X_{n+1} = j | X_n = i_n\, , X_{n-1} = i_{n-1}\, , ... \, , X_1 = i_1\, ,X_0 = i_0)
+\end{split} \end{equation*}
+The number of dependency combinations is exponential because \\
+$X_{n+1}$ depends on $X_n$ to $X_0$ \\
+and $X_{n}$ depends on $X_{n-1}$ to $X_o$ \\
+and so on. 
+
+\paragraph{Markov Chain} As a result of the exponential size, we make a
+simplifying assumption. We only use the latest information. $X_{n+1}$ only
+depends on $X_n$. Now we are left with transition probabilities:
+\begin{equation*} \begin{split}
+	P(X_{n+1} | X_n) = P(X_{n+1} = j | X_n = i_n\, , X_{n-1} = i_{n-1}\, , ... \, , X_1 = i_1\, ,X_0 = i_0)
+\end{split} \end{equation*}
+Given $P(X_0 = i)$ for all $i$'s, we can compute any state. However, notice that
+the formula depends on n, the discrete time that has pasted so far, which make
+analysis difficult still. For example, in the 9am one hour interval the number
+of jobs in a login system tends to be higher than at 2am.
+
+\paragraph{Homogeneous Markov Chains} We now make the assumption that that the
+transistion probabilities do not depend on time. For example, the transition
+probabilies for the number of webcrawling robots requesting a webpage remain the
+same despite the time. So we can write
+\begin{equation*} \begin{split}
+	P(X_{n+1} = j | X_n = i ) = P(X_{n} =j | X_{n-1} = i ), \forall n\,i\,j \ge 0
+\end{split} \end{equation*}
+Which is abbreviated to $P_{ij}$
+
+
+
+
+
 
 \begin{equation*} \begin{split}
 \end{split} \end{equation*}
+
+
+
+
+
+
+
+
+
+
+
 

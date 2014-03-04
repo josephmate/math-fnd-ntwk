@@ -4,8 +4,8 @@ pdf_out = $(file_prefix).pdf
 
 all : $(pdf_out)
 
-$(pdf_out) : $(file_prefix).tex *.tex 
-	latexmk -pdf $(file_prefix).tex
+$(pdf_out) : $(file_prefix).tex *.tex
+	latexmk -pdf -e '$$pdflatex=q/xelatex %O %S/' $(file_prefix).tex
 	rm -f $(file_prefix).aux
 	rm -f $(file_prefix).log
 	rm -f $(file_prefix).fdb_latexmk

@@ -1,0 +1,20 @@
+
+
+\begin{tikzpicture}[scale=0.5]
+	\tkzDrawSegment({0,0},{3,0}) 
+	\tkzDrawSegment({4,0},{7,0}) 
+	\draw[dotted, line width = 0.5mm](3,0) -- (4,0);
+
+	\foreach \i in {0,...,2}{ 
+	\begin{scope}
+		\tkzDrawSegment({\i,-1/2},{\i,1/2})
+	\end{scope}
+	}
+
+	\foreach \i in {5,...,7}{ 
+	\begin{scope}
+		\tkzDrawSegment({\i,-1/2},{\i,1/2})
+		\node
+	\end{scope}
+	}
+\end{tikzpicture}
