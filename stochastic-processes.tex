@@ -24,7 +24,7 @@ $i^{th}$ hour.
 \paragraph{Continuous Time Parameter}
 The states are function of time $t$ ($X(t)$).
 
-\subsubsection{Discrete State Space and Time} There might be a dependency
+\subsection{Discrete State Space and Time} There might be a dependency
 between the previous time interval $X_i$'s and the states those time interval
 can be in that need to be model in the current $X_n$. 
 \begin{equation*} \begin{split}
@@ -56,9 +56,118 @@ same despite the time. So we can write
 Which is abbreviated to $P_{ij}$
 
 
+\paragraph{State Transistion Diagram}
+TODO draw diagram and place it here
+
+\paragraph{Chapman-Kolmogorov Equation}  \label{chap-komo-eq-explain}
+Let $P_{ij}^{(m)}$ be the m step transistion probability from state $i$ to $j$
+defined as:
+\begin{equation*} \begin{split}
+	P_{ij}^{(m)} = P(X_{n+m} = j | X_n = i)
+\end{split} \end{equation*}
+To take m steps to go from (possibly visiting m in an intermediate state
+multiple itmes), you can take m-1 to steps. At step m-1, you can arrive at any
+state k. To go from each state k at the m-1 step to the m step, you just apply
+the transisition probability.
+
+We can sum the probabilities because the probabililites of going from state k in
+the m-1 step to state j are mutually exclusive (they are mutually exclusive
+because they are different states).
+
+Lastly, we can mulitple the probability of going to state k in m-1 steps by the
+probability of going to state j because the probabilities are independent.
+\begin{equation*} \begin{split}
+	P_{ij}^{(m)} = 
+\end{split} \end{equation*}
+Which is exactly the same as taking 1 step, and then m-1 steps.
+\begin{equation*} \begin{split}
+	P_{ij}^{(m)} = 
+\end{split} \end{equation*}
+For a derivation of this, see (\ref{chap-komo-eq-deriv}).
 
 
+\paragraph{Irreducible Markov Chain} allows every state to be reached from every
+other state for all pairs of states $i$ and $j$. More concretely:
+\begin{equation*} \begin{split}
+	\forall i \forall j \ne i : \exists m_{ij}  : P_{ij}^{(m_{ij})} > 0 
+\end{split} \end{equation*}
 
+\paragraph{Recurrent State}: State j is recurrent if after leaving state j then
+you are guarenteed to eventually comeback.
+
+Let $f_j^{(n)}$ be the probability that you first return to state j in n steps.
+
+Notice that $f_j^{(0)} = 0$ because it's impossible to comeback without taking any
+steps. Also notice that $f_j^{(1)} > 0$ is only possible is the transistion pointing
+to itself $P_{jj} > 0$.
+
+j is recurrent if and only if
+\begin{equation*} \begin{split}
+	f_j = \sum_{n=1}^\infty f_j^{(n)} = 1
+\end{split} \end{equation*}
+
+\paragraph{Recurrent Non-null} A state j is recurrent non-null if and only if we
+get back to state j, but it does not take forever. More concretely: \\[0.5cm]
+j is recurrent non-null if and only if j is recurrent ($f_j = 1$) and
+\begin{equation*} \begin{split}
+	M_j = \sum_{n=1}^\infty n f_j^{(n)}
+\end{split} \end{equation*}
+Where $M_j$ is the expected number of steps to come back.
+
+\paragraph{Recurrent Null} j is recurrent null if and only if j is recurrent and
+j is not recurrent non-null.
+
+
+TODO EXAMPLE WITH DIAGRAM
+
+TODO EXAMPLE WITH DIAGRAM
+
+\paragraph{Periodicity} A state j is periodic if and only if the only way to
+come back to state j is to take r, 2r, 3r, ... , cr, steps.  \\[0.5cm]
+
+If a state j is not periodic, it's called aperiodic \\[0.5cm]
+
+If state j as a self loop ($p_{jj} > 0$), then state j is aperiodic \\[0.5cm]
+
+If the system is a irreducible Markov Chain, and contains a self loop, then all
+states j are aperiodic.
+
+\paragraph{State Probability} 
+Let $X_n$ be the random variable for the state at interval n, then in a
+homogeneous Markov Chain we have that:
+\begin{equation*} \begin{split}
+	\pi_j^{(n}) = P(X_n = j) \mbox{ - at step j }
+\end{split} \end{equation*}
+Let $p_{ij}$ be the transition probability for going from state $i$ to state $j$
+(independant of time, so it's the same for all intervals ($X_n$), then
+\begin{equation*} \begin{split}
+	\pi_j^{(n+1)} = \sum_{i=0}^\infty p_{ij} \pi_i^{(n)}
+	\mbox{ (by applying total probability)}
+\end{split} \end{equation*}
+
+Given initial conditions $\pi_j^{(0)} \forall j$, we can compute all
+$\pi_j^{(i)}$ apply the above formula recursively.
+
+\paragraph{Equilibrium Probability Therom} (I made up this name. It seems better
+than 'Fundamental Theorm.)
+
+If a homogeneous Markov Chain is irreducible and a periodic, then there exists a
+limiting probability (equilibrium):
+\begin{equation*} \begin{split}
+	\pi_j = \lim_{n \to \infty} \pi_j^{(n)}
+\end{split} \end{equation*}
+which is independant of the initial conditions $\pi_j^{(0)}$. \\[0.5cm]
+
+Moreover, if all states j are recurrent non-null, then $\pi_j$ is non zero and
+can be uniquely etermined from the equations:
+\begin{equation*} \begin{split}
+	\pi_j = \sum_i p_{ij} \pi_i , \forall j
+\end{split} \end{equation*}
+\begin{equation*} \begin{split}
+	\sum_j \pi_j = 1
+\end{split} \end{equation*}
+
+TODO EXAMPLE
 
 \begin{equation*} \begin{split}
 \end{split} \end{equation*}
