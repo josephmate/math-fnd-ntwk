@@ -1,0 +1,16 @@
+
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,on grid,auto,node distance=3cm,
+  thick,main node/.style={circle,fill=white!20,draw,font=\sffamily\Large\bfseries}]
+
+  \node[main node] (1) {1};
+  \node[main node] (2) [below left of=1] {2};
+  \node[main node] (3) [below right of=1] {3};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge [bend right=15] node {.75} (2)
+        edge [bend left=30]  node {.25} (3)
+    (2) edge [bend left=30]  node {.25} (1)
+        edge [bend right=15] node {.75} (3)
+    (3) edge [bend left=30]  node {.25} (2)
+        edge [bend right=15] node {.25} (1);
+\end{tikzpicture}
