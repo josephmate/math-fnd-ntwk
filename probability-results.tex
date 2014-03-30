@@ -1,0 +1,90 @@
+
+\paragraph{Sample Space}: set of all possible outcomes
+\paragraph{Event}: a subset of the space space
+
+\paragraph{Disjunction of Events}:  $E = E_1 \cup E_2$
+\paragraph{Conjunction of Events}:  $E = E_1 \cap E_2$ also written as $E_1 E_2$
+
+\paragraph{Mutually Exclusive}: $E_1$ and $E_2$ are mutually exclusive $ \iff E_1 \cap E_2 = \varnothing $
+
+\paragraph{Axioms of Probability}
+\begin{align*}
+	0 \le P(event) & \le 1 \\
+	P(SampleSpace) &= 1 \\
+	P(\cup_{i=1}^\infty E_i ) &= \sum_{i=1}^\infty P(E_i) \mbox{ where all } E_i \mbox{ are mutually exclusive}
+\end{align*}
+
+\paragraph{Corollaries from Axioms}
+Let $E^c$ be the compliment of E, then E and $E^c$ are mutually exclusive \\
+$P(\varnothing) = 0$ \\
+If $E_1$ and $E_2$ are not mutually exclusive, then $P(E_1 \cup E_2) = P(E_1) +
+P(E_2) - P(E_1 E_2)$.
+
+\paragraph{Conditional Probability} $P(F|E) = \frac{P(EF)}{P(E)}$
+\paragraph{Joint Probability} You have n samples space to draw from. The Joint
+Probability is the cross product of those spaces.
+IE:
+$S_1 \times S_2 \times ... \times S_n$
+and joint probability given by $E_1 \in S_1 , E_2 \in S_2 , ... , E_n \in S_n$
+and
+$P(E_1 , E_2  , ... , E_n )$
+
+\paragraph{Marginal Probability}: Sum over all other sample spaces:
+$P(S_1) = \sum_{j_2=1}^{N^2}...\sum_{j_n=1}^{N^n} P(E_1 , E_2  , ... , E_n ) $
+
+\paragraph{Independent Events} Events E and F are independent 
+$\iff P(EF) = P(E)P(F)$ equivalently $P(F|E) = P(F)$
+
+\paragraph{Total Probability} $P(F) = \sum_{i=1}^n P(F | E_i )P(E_i)$
+
+\paragraph{Bayes Rule} $P(E|F)=\frac{P(F|E)P(E)}{P(F)}$
+\paragraph{Generalized Bayes Rule}
+$P(E_i|F)=\frac{P(F|E_i)P(E_i)}{\sum_{j} P(F|E_j)P(E_j)}$
+
+
+\subsubsection{Discrete}
+\paragraph{Random Variable} A variable that can take on any value from the
+sample space, along with a probability distribution on which it takes those
+values.
+\paragraph{Probability Mass Function} $P(X=x_i)$ shortened sometimes to $P(x_i)$
+\paragraph{Mean} $E[X] = \sum_{i=1}^n x_i P(x_i)$
+\paragraph{Variance} $var(X) = \sum_{i=1}^n (x_i - E[X])^2P(x_i)$
+\paragraph{Cumulative Distribution Function}
+\begin{align*}
+	F(x)       &= \sum_{i \le x} P(i) \\
+	F(-\infty) &= 0 \\
+	F(\infty)  &= 1 \\
+	F(b)-F(a)  &= P(a < X \le b) = \sum_{a<i \le b} P(i)
+\end{align*}
+
+\paragraph{Bernoulli} $P(1) = a$, $P(0) = 1-a$, $E[X] = a$, $var(X) = a(1-a)$
+\paragraph{Binomial} n independant Bernoulli trials:
+$P(i) = {n \choose i} a^i(1-a)^{n-j}$,
+$E[X] = na$,
+$var(X) = na(1-a)$
+\paragraph{Poisson} $P(i) = \frac{e^{-\lambda} \lambda^i}{i!}$, 
+$E[X] = \lambda$, 
+$var(X) = \lambda$
+\paragraph{Geometric} Prob that the $i{th}$ Bernoulli trial is a success:
+$P(i) = (1-a)^{i-1}a$,
+$E[X] = \frac{1}{a}$,
+$var(X) = \frac{1-a}{a^2}$,
+has the memoryless property
+\paragraph{Memoryless Property} $P(X=i+k|X>k) = P(X=i)$
+
+\subsubsection{Continuous}
+\paragraph{Probability Density Function}
+\paragraph{}
+\paragraph{}
+\paragraph{}
+
+
+
+
+
+
+
+
+
+
+
