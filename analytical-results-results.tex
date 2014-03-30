@@ -1,0 +1,118 @@
+
+
+\subsubsection{Single Server}
+
+Let $\lambda$ be the arrival rate. Then the average inter-arrival time (time
+between successive arrivals) is given by:
+\begin{equation*} \begin{split}
+	InterarrivalTime = \frac{1}{\lambda}
+\end{split} \end{equation*}
+
+Let $\mu$ be the the service rate. Then the average service time is given by:
+\begin{equation*} \begin{split}
+	ServiceTime = \frac{1}{\mu}
+\end{split} \end{equation*}
+
+The service time of a job is computed by:
+\begin{equation*} \begin{split}
+	ServiceTime = \frac{ServiceRequirement}{ServerCapacity}
+\end{split} \end{equation*}
+
+Let $n$ be the number of jobs that arrived in time period (0,L). \\
+Assume that $n$ is also the number of jobs processed in time period (0,L). \\
+Let $x_j$ be the service time of the $j^{th}$ job. \\
+Let $Y$ be the throughput, the rate at which jobs are completed. Then
+\begin{equation*} \begin{split}
+	Y = \lambda = \frac{n}{L}
+\end{split} \end{equation*}
+Let $S$ be the mean service time. Then:
+\begin{equation*} \begin{split}
+	S = \frac{1}{n} \sum_{j=1}^n x_j
+\end{split} \end{equation*}
+
+Let $U$ be the utilization, the percentage of time that the server is busy.
+Then:
+\begin{equation*} \begin{split}
+	U = \frac{1}{L} \sum_{j=1}^n x_j = \lambda S = Y S
+\end{split} \end{equation*}
+
+Let $r_j$ be the response time of the $j^{th}$ job. \\
+Let $R$ be the mean response time. Then
+\begin{equation*} \begin{split}
+	R = \frac{1}{n} \sum_{j=1}^n r_j
+\end{split} \end{equation*}
+Let $Q$ be the mean number of jobs in the system. Then
+\begin{equation*} \begin{split}
+	Q = \frac{1}{L} \sum_{j=1}^n r_j = \lambda R = Y R \mbox{ (Little's Law) }
+\end{split} \end{equation*}
+
+\subsubsection{Open Network Model}
+
+Let $p_{ij}$ be the probability goes from server i to server j after finishing at i. \\
+The $(M+1)^{th}$ $p_{i,(M+1)}$ is the probability for leaving the system from server i. \\
+The probability of take any of the edges when leaving a server $i$ is one, so:
+\begin{equation*} \begin{split}
+	\sum_{j=1}^{M+1} p_{ij} = 1 \; \forall i
+\end{split} \end{equation*}
+Let $\gamma_i$ be the arrival rate of jobs coming from outside the system.\\
+The arrival rates at each server can be solved using the following equations (M
+unknowns are the $\lambda_i$'s).
+\begin{equation*} \begin{split}
+	\lambda_i = \gamma_i + \sum_{j=1}^M \lambda_j p_{ij}
+\end{split} \end{equation*}
+Let $U_i$ be the utlization of server i. \\
+Let $Q_i$ be the mean number of jobs at server i. \\
+Let $R_i$ be the mean response time at server i. \\
+Let Y be the system throughput. \\
+Let R be the system response time. \\
+Then:
+\begin{align*} 
+	U_i &= \lambda_i S_i \\
+	Q_I &= \lambda_i R_i \\
+	Y   &= \sum_{j=1}^M \lambda_i 
+\end{align*} 
+
+
+
+\subsubsection{Finite Population}
+
+Let $N$ be the number of users. \\
+Let $Z$ be the mean think time. \\
+Recall that $S$ is the mean service time. \\
+Recall that $L$ is the length of the observation period. \\
+Recall that we assume $n$ is the number of jobs that enter equal to the number
+that leave the system.
+\begin{equation*} \begin{split}
+	R = \frac{N}{Y-Z}
+\end{split} \end{equation*}
+We know that
+\begin{equation*} \begin{split}
+	U = YS \le 1
+\end{split} \end{equation*}
+So
+\begin{align*}
+	N^*  & = \frac{S+Z}{Z} \\
+	R & \ge 
+	\left\{
+		\begin{alignedat}{3}
+			& S     & \, & 1 \le  & N \le N^* \\
+			& NS-Z  & \, &        & N  >  N^*
+		\end{alignedat}
+	\right. \\
+	Y & \le
+	\left\{
+		\begin{alignedat}{3}
+			& \frac{N}{S+Z} & \, & 1 \le  & N \le N^* \\
+			& \frac{1}{S}   & \, &        & N  >  N^*
+		\end{alignedat}
+	\right.
+\end{align*}
+
+\subsubsection{Closed Network Model}
+Let $p_{ij}$ be the probability goes from server i to server j after finishing at i. \\
+The $0^{th}$ $p_{i,0}$ is the probability of returning to the think state (if there is one). \\
+The probability of take any of the edges when leaving a server $i$ is one, so:
+\begin{equation*} \begin{split}
+	\sum_{j=0}^{M} p_{ij} = 1 \; \forall i
+\end{split} \end{equation*}
+
