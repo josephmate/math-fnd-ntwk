@@ -58,18 +58,20 @@ Let $\gamma_i$ be the arrival rate of jobs coming from outside the system.\\
 The arrival rates at each server can be solved using the following equations (M
 unknowns are the $\lambda_i$'s).
 \begin{equation*} \begin{split}
-	\lambda_i = \gamma_i + \sum_{j=1}^M \lambda_j p_{ij}
+	\lambda_i = \gamma_i + \sum_{j=1}^M \lambda_j p_{ji}
 \end{split} \end{equation*}
 Let $U_i$ be the utlization of server i. \\
 Let $Q_i$ be the mean number of jobs at server i. \\
 Let $R_i$ be the mean response time at server i. \\
+Let $\gamma$ be the total arrival rate of jobs entering the system. \\
 Let Y be the system throughput. \\
-Let R be the system response time. \\
-Then:
+Let R be the system response time. Then:
 \begin{align*} 
 	U_i &= \lambda_i S_i \\
-	Q_I &= \lambda_i R_i \\
-	Y   &= \sum_{j=1}^M \lambda_i 
+	Q_i &= \lambda_i R_i \\
+	Q   &= \sum_{i=1}^M Q_i \\
+	Y   &= \sum_{j=1}^M \lambda_i P_{i,(M+1)} = \sum_{i=1}^M \gamma_i \\
+	R   &= \frac{Q}{\gamma} = \frac{1}{\gamma} \sum_{i=1}^M \lambda_i R_i
 \end{align*} 
 
 
@@ -95,24 +97,94 @@ So
 	R & \ge 
 	\left\{
 		\begin{alignedat}{3}
-			& S     & \, & 1 \le  & N \le N^* \\
-			& NS-Z  & \, &        & N  >  N^*
+			& S     & \qquad & 1 \le  & N \le N^* \\
+			& NS-Z  & \qquad &        & N  >  N^*
 		\end{alignedat}
 	\right. \\
 	Y & \le
 	\left\{
 		\begin{alignedat}{3}
-			& \frac{N}{S+Z} & \, & 1 \le  & N \le N^* \\
-			& \frac{1}{S}   & \, &        & N  >  N^*
+			& \frac{N}{S+Z} & \qquad & 1 \le  & N \le N^* \\
+			& \frac{1}{S}   & \qquad &        & N  >  N^*
 		\end{alignedat}
 	\right.
 \end{align*}
 
-\subsubsection{Closed Network Model}
+\subsubsection{Closed Network Model: No Users (ie: Cycle)}
 Let $p_{ij}$ be the probability goes from server i to server j after finishing at i. \\
-The $0^{th}$ $p_{i,0}$ is the probability of returning to the think state (if there is one). \\
+Notice there is no $p_{i,0}$ or $p_{i,(M+1)}$ \\
 The probability of take any of the edges when leaving a server $i$ is one, so:
-\begin{equation*} \begin{split}
+\begin{align*} 
+	\sum_{j=1}^{M} p_{ij} = 1 \; \forall i
+\end{align*} 
+Recall $\lambda_i$ is the arrival rate of jobs at server i \\
+We get the follow set if linearly {\bf dependant} :
+\begin{align*} 
+	\lambda_i = \sum_{j=1}^M \lambda_j p_{ji}
+\end{align*} 
+We can only determine:
+\begin{align*} 
+	\frac{\lambda_i}{\lambda_j} &= \frac{Y_i}{Y_j} \\
+	\frac{U_i}{U_j} &= \frac{\lambda_i S_i}{\lambda_j S_j}
+\end{align*} 
+Let $U_b$ be the server with highest utilization. Then:
+\begin{align*} 
+	U_i \le \frac{\lambda_i S_i}{\lambda_b S_b}
+\end{align*} 
+
+\subsubsection{Closed Network Model: Web Application}
+Let $p_{ij}$ be the probability goes from server i to server j after finishing at i. \\
+The $0^{th}$ $p_{i,0}$ is the probability of the request returning to the user. \\
+The probability to take any of the edges when leaving a server $i$ is one, so:
+\begin{align*} 
 	\sum_{j=0}^{M} p_{ij} = 1 \; \forall i
-\end{split} \end{equation*}
+\end{align*}
+We get the follow set if linearly {\bf dependant} :
+\begin{align*} 
+	\lambda_i = \sum_{j=0}^M \lambda_j p_{ji}
+\end{align*} 
+Let $V_i$ the the visit ration:
+\begin{align*} 
+	V_i = \frac{\lambda_i}{\lambda_0}
+\end{align*} 
+Let $D_i = V_i S_i$ (???) \\
+The throughput of the system is total arrival rate from the users. This gives
+us:
+\begin{align*} 
+	Y &= \lambda_0 \\
+	\lambda_i &= Y V_i \\
+	U_i &= \lambda_i S_i = Y V_i S_i = Y D_i \\
+	\frac{U_i}{U_j} &= \frac{Y D_i}{Y D_j} = \frac{D_i}{D_j}
+\end{align*} 
+Let $Z$ be the mean think time. \\
+Let $b$ the the server with the highest utilization. Then:
+\begin{align*} 
+	U_i & \le \frac{D_i}{D_b} \\
+	N^* & =   \frac{D+Z}{D_b} \\
+	R(N) & \ge 
+	\left\{
+		\begin{alignedat}{3}
+			& D         & \qquad & 1 \le  & N \le N^* \\
+			& N D_b -Z  & \qquad &        & N  >  N^*
+		\end{alignedat}
+	\right. \\
+	Y(N) & \le
+	\left\{
+		\begin{alignedat}{3}
+			& \frac{N}{D+Z}   &  \qquad & 1 \le  & N \le N^* \\
+			& \frac{1}{D_b}   & \qquad  &        & N  >  N^*
+		\end{alignedat}
+	\right.
+\end{align*} 
+
+
+
+
+
+
+
+
+
+
+
 
