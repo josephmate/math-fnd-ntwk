@@ -1,0 +1,52 @@
+
+
+\subsubsection{Discrete Time}
+$P(X_{n+1} = j | X_n = i_n , X_{n-1} = i_{n-1}, ... , X_0 = i_0)$
+
+\paragraph{Markov Chain Assumption}
+$P(X_{n+1} = j | X_n = i_n )$, Applying total probability
+$P(X_{n+1} = j ) = \sum_{i} P(X_{n+1} = j |  X_n = i_n) P(X_n = i)$
+
+\paragraph{Homogeneous Markov Chain}
+$P(X_{n+1} = j | X_n = i_n ) = p_{ij} \quad \forall i,j$ (IE: independant of n)
+
+\paragraph{Chapman-Kolmogorov Equation}
+Let $p_{ij}^(m)$ be the probability of starting from state i and arriving at state j in m steps.
+$p_{ij}^{(m)} = \sum_k p_{ik} p_{kj}^{(m-1)} = \sum_k p_{ik}^{(m-1)}p_{kj}$
+
+\paragraph{Irreducible Markov Chain} Every state can be reached from every other state.
+
+\paragraph{Recurrence}
+Let $f_j^{(n)}$ be the probability of first returning to j occurs n steps after leaving j. \\
+Let $f_j = sum_{n=1}^\infty f_j^{(n)}$, then
+state is recurrent $\iff f_j = 1$
+
+\paragraph{Recurrent Non-null}
+Let $M_j = \sum_{n=1}^\infty n f_j^{(n)}$ then state j is recurrent non-null
+$\iff M_j <<< \infty$. Otherwise, it's recurrent null.
+
+\paragraph{Periodicity} The number of steps to come back is $cn$, where $c > 1$
+
+\paragraph{State Probability}
+Let $\pi_j^{(n)} = P(X_n = j)$
+
+\paragraph{Homogenerous State Probability}
+$\pi_j^{(n+1)} = \sum_j p_{ij} \pi_i^{(n)}$. Given all $\pi_j^{(0)}$, you can
+compute any state.
+
+\paragraph{Steady State Probability} If aperiodic irreducible homogeneous Markov
+Chain then $\pi_j = \lim_{n \to \infty} \pi_j^{(n)}$ and can be computed using
+the system of equations:
+\begin{align*}
+	\pi_j = \sum_i p_{ij} \pi_i \quad \forall j \\
+	\sum_i \pi_j = 1
+\end{align*}
+
+\paragraph{Memoryless Property} Residence time in a state has the memoryless
+property. The prob you state m steps, and leave on the $(j+1)^{th}$ is
+$p_{jj}^m(1-p_{jj})$. This has the memoryless property.
+
+\subsubsection{Continuous Time}
+
+
+
