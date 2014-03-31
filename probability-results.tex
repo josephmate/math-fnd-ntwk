@@ -48,7 +48,7 @@ sample space, along with a probability distribution on which it takes those
 values.
 \paragraph{Probability Mass Function} $P(X=x_i)$ shortened sometimes to $P(x_i)$
 \paragraph{Mean} $E[X] = \sum_{i=1}^n x_i P(x_i)$
-\paragraph{Variance} $var(X) = \sum_{i=1}^n (x_i - E[X])^2P(x_i)$
+\paragraph{Variance} $var(X) = \sum_{i=1}^n (x_i - E[X])^2P(x_i) = E[X^2] - E[X]^2$
 \paragraph{Cumulative Distribution Function}
 \begin{align*}
 	F(x)       &= \sum_{i \le x} P(i) \\
@@ -147,14 +147,51 @@ $E[Y] = \int_{-\infty}^{\infty} x g(x) f(x) dx$
 \end{align*}
 \subsubsection{Function of Two Random Variables}
 $Z =g(X,Y)$
-\paragraph{}
-\paragraph{}
-\paragraph{}
-\paragraph{}
-\paragraph{}
-\paragraph{}
-\paragraph{}
-\paragraph{}
+\paragraph{Discrete}
+$E[Z] = \sum_i \sum_j g(i,j) P(i,j)$
+\paragraph{Continuous}
+$E[Z] = \int \int g(x,y) f(x,y) \, dy \, dx$
+\paragraph{Properties}
+\begin{align*}
+	E[X+Y] = E[X] + E[Y] \\
+	E[XY] = E[X]E[Y] \mbox { if X,Y independant} \\
+	var(X+Y) = var(X) + var(Y) \mbox { if X,Y independant} \\
+	var(X-Y) = var(X) + var(Y) \mbox { if X,Y independant}
+\end{align*}
+
+\subsection{Hypo and Hyper Exponential}
+\paragraph{Coefficient of Variation}
+$CV(X) = \frac{\sqrt{var(X)}}{E[X]}$
+\paragraph{Exponential} $CV(X) = 1$
+\paragraph{Hypoexponential} $Y=\sum_{i=1}^k X_i$, each $X_i$ is independant with
+parameter $\lambda_i$
+\paragraph{Erlang Distribution} Hypoexponential with all $\lambda_i = \lambda$,
+$X[Y] = \frac{k}{\lambda}$, 
+$var(Y) = \frac{k}{\lambda^2}$, 
+$CV(Y) = \frac{1}{\sqrt{k}} \le 1$
+\paragraph{Hyperexponential} $Y = X_i$ with probability of selecting that i
+being $p_i$. Each $X_i$ has exponential($\lambda_i$) distribution.
+\begin{align*}
+	f_Y(y) = \sum_{i=1}^k p_i \lambda_i e^{-\lambda_i x_i} \\
+	E[Y] = \sum_i \frac{p_i}{\lambda_i} \\
+	E[Y^2] = \sum_i \frac{p_i}{\lambda_i} \\
+	CV(Y) > 1
+\end{align*}
+
+\subsubsection{Analysis of Sum of Two Random Variables}
+$Y = X_1 + X_2$
+\paragraph{Discrete} by fixing one of the random variables:
+$P(Y=k) = \sum_{i=0}^k P(X_i = i, X_2 = k-i)$
+\paragraph{Continuous} by fixing one of the random variables:
+$f(y) = \int_{-\infty}^y f(x,y-x) \, dx$
+
+
+\subsubsection{Inequalities}
+\paragraph{Markov}
+$P(X \ge \alpha) \le \frac{\mu}{\alpha}$, $\alpha > 0$
+\paragraph{Chebychev}
+$P(|X-\mu| \ge \alpha) \le \frac{\sigma^2}{\alpha^2}$, $\alpha > 0$
+
 
 
 
