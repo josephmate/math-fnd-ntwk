@@ -65,7 +65,7 @@ $var(X) = na(1-a)$
 \paragraph{Poisson} $P(i) = \frac{e^{-\lambda} \lambda^i}{i!}$, 
 $E[X] = \lambda$, 
 $var(X) = \lambda$
-\paragraph{Geometric} Prob that the $i{th}$ Bernoulli trial is a success:
+\paragraph{Geometric} Prob that the $i^{th}$ Bernoulli trial is a success:
 $P(i) = (1-a)^{i-1}a$,
 $E[X] = \frac{1}{a}$,
 $var(X) = \frac{1-a}{a^2}$,
@@ -73,11 +73,88 @@ has the memoryless property
 \paragraph{Memoryless Property} $P(X=i+k|X>k) = P(X=i)$
 
 \subsubsection{Continuous}
-\paragraph{Probability Density Function}
-\paragraph{}
-\paragraph{}
-\paragraph{}
+\paragraph{Probability Density Function} 
+\begin{align*}
+	P(x_1 \le X \le x_2) &= \int_{x_1}^{x_2} f(x) dx \\
+	f(x) &\ge 0 \\
+	\int_{-\infty}^{\infty} f(x) &= 1 \\
+	P(X=x)              &=        0 \\
+	P(x \le X \le x+dx) & \approx f(x)dx \mbox{ when x is small}
+\end{align*}
+\paragraph{Cumulative Distribution Function} 
+$F(x) = P(X\le x) = \int_{-\infty}^{x} f(y) dy$
+\paragraph{Expectation}
+$E[X] = \int_{-\infty}^{\infty} x f(x) dx$
+\paragraph{Variance}
+$var(X) = \int_{-\infty}^{\infty} (x-E[X])^2 f(x) dx$
 
+\paragraph{Uniform}
+$f(x) = \frac{1}{b-a}$ if $a \le x \le b$, 0 otherwise, 
+$E[X] = \frac{a+b}{2}$, 
+$var(X) = \frac{(b-a)^2}{12}$, 
+$F(x) = \frac{x-a}{b-a}$
+\paragraph{Exponential}
+$f(x) = \lambda e^{-\lambda x}$, 
+$E[X] = \frac{1}{\lambda}$, 
+$var(X) = \frac{1}{\lambda^2}$, 
+$F(x) = 1 - e^{-\lambda x}$,
+has memoryless property
+\paragraph{Memoryless Property}
+$P(Y \le x_0 + x | Y > x_0)$
+\paragraph{Normal Distribution}
+$f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{\frac{-(x-\mu)^2}{2\sigma^2}}$, 
+$E[X] = \mu$, 
+$var(X) = \sigma^2$
+\paragraph{Power Law}
+$f(x) = \frac{\alpha - 1}{x_m} \left( \frac{x_m}{x} \right)^\alpha$ if $x \ge
+x_m$, 0 otherwise, 
+$E[X] = \frac{\alpha-1}{\alpha-2} x_m$
+\subsubsection{Joint Discrete Random Variables}
+\paragraph{Joint Distribution} $P(X=i, Y=j) = P_{XY}(i,j)$ sometimes shortened to $ P(i,j)$
+\paragraph{Marginal Distribution} $P_X(i) = \sum_{j} P(i,j)$
+\paragraph{Condiitonal Probability} $P(j|i) = P(Y=j|X=i)$
+\paragraph{Total Probability} $P_Y(j) = \sum_i P(j|i)P_X(i)$
+\paragraph{Conditional Expecation} $E[Y|X=i] = \sum_j j P(j|i)$
+\paragraph{Total Expecation} $E[Y] = \sum_i E[Y|X=i] P_X(i)$
+\subsubsection{Joint Continuous Random Variables}
+\paragraph{Joint Density Function}
+$f_{XY}=(x,y) = f(x,y)$, 
+$P(a \le X \le b, c \le Y \le d) = \int_a^b \int_c^d f(x,y) dy dx$
+\paragraph{Marginal Density}
+$f_X(x) = \int_{-\infty}^{\infty} f(x,y) dy$
+\paragraph{Conditional Density}
+$f_Y(Y|X=x) = \frac{f(x,y)}{f_X(x)}$
+\paragraph{Total Probability}
+$f_Y(Y) = \int_{-\infty}^{\infty} f_Y(Y|X=x) f_X(x) dx$
+\paragraph{Conditional Expectation}
+$E[Y|X=x] = \int_{-\infty}^{\infty} y f(y|X=x) dy$
+\paragraph{Total Expectation}
+$E[Y] = \int_{-\infty}^{\infty} E[Y|X=x] f_X(x) dx$
+\subsubsection{Independant Random Variables}
+\paragraph{Discrete} X,Y independant $\iff P(i,j) = P(i)P(j)$
+\paragraph{Continuous} X,Y independant $\iff f(x,y) = f_X(x) f_Y(y)$
+\subsubsection{Function of One Random Variable}
+$Y= g(X)$
+\paragraph{Discrete Expecation}
+$E[Y] = \sum_i g(i)P(i)$
+\paragraph{Continuous Expectation}
+$E[Y] = \int_{-\infty}^{\infty} x g(x) f(x) dx$
+\paragraph{Useful Relationships}
+\begin{align*}
+	E[aX+b] = aE[X] + b \\
+	var(X+a) = var(X) \\
+	var(aX) = a^2 var(X)
+\end{align*}
+\subsubsection{Function of Two Random Variables}
+$Z =g(X,Y)$
+\paragraph{}
+\paragraph{}
+\paragraph{}
+\paragraph{}
+\paragraph{}
+\paragraph{}
+\paragraph{}
+\paragraph{}
 
 
 
