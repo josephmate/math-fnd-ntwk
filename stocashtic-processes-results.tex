@@ -48,5 +48,103 @@ $p_{jj}^m(1-p_{jj})$. This has the memoryless property.
 
 \subsubsection{Continuous Time}
 
+\paragraph{Transistion Probability}
+\begin{align*}
+	P_{ij}(v,t) &= P(X(t) = j | X(v) = i) \\
+	P_{ij}(t,t) &=
+	\left\{
+		\begin{alignedat}{3}
+			& 1  & \qquad & \mbox{if } i=j \\
+			& 0  & \qquad & \mbox{if } i=j
+		\end{alignedat}
+	\right. \\
+	q_{kj}(t) &= \lim_{\triangle t \to 0} \frac{P_{kj}(t,t+\triangle t)}{\triangle t} \\
+	q_{jj}(t) &= \lim_{\triangle t \to 0} \frac{P_{jj}(t,t+\triangle t)-1}{\triangle t} \\
+	\frac{ \partial P_{ij}(v,t) }{ \partial t }
+	&= \sum_{k\ne j} P_{ij}(v,t) q_{kj}(t) + P_{ij}(v,t) q_{jj}(t) \\
+\end{align*}
+
+\paragraph{State Probability}
+\begin{align*}
+	\pi_j(t) = P(X(j) = j) \\
+	\pi_j(t) = \sum_i P_{ij}(v,t) \pi_i(v) \\
+	\frac{d \pi_j(t)}{dt} = \sum_i \frac{ \partial P_{ij}(v,t)}{\partial t} \pi_i(v) \\
+	\frac{d \pi_j(t)}{dt} = \sum_{k\ne j} \pi_k(v) q_{kj}(t) + \pi_j(v) q_{jj}(t)  \\
+\end{align*}
+
+\paragraph{Homogeneous State Probability}
+$\frac{d \pi_j(t)}{dt} = \sum_{k\ne j} \pi_k(v) q_{kj} + \pi_j(v) q_{jj}$
+
+\paragraph{Steady State}
+\begin{align*}
+	\pi_j = \lim_{t \to \infty} \pi_j(t) \\
+	\Rightarrow \frac{ d \pi_j(t)}{dt} =  \frac{ d \pi_j }{dt} = 0 \\
+\end{align*}
+Can solve steady state using the (j+1) equations:
+\begin{align*}
+	\sum_{k \ne j } \pi_k q_{kj} + \pi_j q_{jj} = 0 \qquad \forall j \\
+	\sum_j \pi_j = 1
+\end{align*}
+
+\paragraph{Residence Time in State is Memoryless} How long will we stay in state
+j, given we have already stayed for s amount of time.
+\begin{align*}
+	P( R_j > s + t | R_j > s) = P(R_j > t)
+\end{align*}
+
+
+\subsubsection{Birth Death Process}
+\begin{align*}
+	q_{j,j+1} &= \lambda_j & j \ge 0 \\
+	q_{j,j-1} &= \mu_j & j \ge 1 \\
+	q_{j,j}   &= -(\lambda_j + \mu_j) & j \ge 0 \\
+	q_{i,j}   &= 0 &  |i-j| \ge 2
+\end{align*}
+\paragraph{Steady State} system of equations
+\begin{align*}
+	\frac{\lambda_j}{\mu_j} &< 1 \qquad \mbox{for } j \ge j_0  \mbox{ then steady state converges }\\
+	p_0 &= \frac{1}{1 + \sum_{j=1}^\infty \prod_{i=0}^{j-1} \frac{\lambda_i}{\mu_{i+1}}} \\
+	p_j &= \prod_{i=1}^{j-1} \frac{\lambda_{i}}{\mu_{i+1}} p_0 \qquad j \ge 1
+\end{align*}
+
+\paragraph{Performance Metrics}
+\begin{align*}
+	\lambda_E = \sum_{j=0}^\infty \lambda_j p_j \\
+	Y = \lambda_E \\
+	Q = \sum_{j=1}^\infty j p_j \\
+	R = \frac{Q}{\lambda_E}
+\end{align*}
+
+\paragraph{Solving Process}
+\begin{tabular}{ c | c c c c c}
+	i           & 0           & 1           & 2           & ...\\
+	\hline
+	$\lambda_i$ & $\lambda_0$ & $\lambda_1$ & $\lambda_2$ & ... \\
+	$\mu_{i+1}$ & $\mu_1$     & $\mu_2$     &  $\mu_3$    & ... \\
+\end{tabular}
+
+\subsubsection{Kendall Notation}
+\paragraph{M/M/N} n servers working in parallel, drawing from same queue
+\paragraph{M/M/$\infty$} No queue. When job arrives, there is a server available
+to process it.
+\paragraph{M/M/1/K} System can only have K jobs in the system. The $(K+1)^{th}$
+job gets regected.
+\paragraph{M/M/1/$\infty$/N} Finite population model with N user work stations.
+\subsubsection{State Transistion Rate Diagram}
+\paragraph{Flow In = Flow Out}
+\paragraph{Mean Value Analysis (Finite Population Model)}
+\begin{align*}
+	Q_i(0) &= 0 \\
+	R_i(n) &= \frac{1}{\mu_i}[ 1 + Q_i(n-1) ] \\
+	V_i    &= \frac{\lambda_i}{\lambda_0} \\
+	R(n)   &= \sum_i V_i R_i \\
+	Y(n)   &= \frac{N}{Z+R(n)} \\
+	Q_i(n) &= Y(n) V_i R_i(n)
+\end{align*}
+\paragraph{Closed Network Model} Insert 'server 0' wih N users = N ciruclating
+jobs. Z (mean think time) = 0. Apply MVA as stated above.
+
+
+
 
 
