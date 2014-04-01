@@ -1,5 +1,70 @@
 
-\paragraph{blah}
+\paragraph{$r^{th}$ Moment}
+$E[X^r] = \sum_j j^r P(j)$,
+$E[X^r] = \int_{- \infty }^{\infty} x^r f(x) \; dx$
+\paragraph{Moment about the Mean} $E[(X-\mu)^r]$
+\paragraph{Moment Generating Function}
+$M(t) = E[e^{tX}]$,
+$\frac{d^r M(t)}{dt^r} \|_{t=0} = E[X^r]$
+
+\paragraph{MGF Properties}
 \begin{align*}
-	blah
+	M_{(X+Y)}(t) &= M_x(t)M_y(t) \quad \mbox{if X,Y independant} \\
+	N(\mu,\sigma^2) &\iff M(t) = e^{\mu t + \frac{1}{2}\sigma^2 t^2}  \\
+	N(0,1) &\iff M(t) = e^{\frac{1}{2}t^2}  \\
+	Y=a+bX, \; X:N(\mu,\sigma^2) &\Rightarrow Y:N(a + b\mu,b^2\sigma^2) \\
+	X:N(\mu_1,\sigma_1^2),Y:N(\mu_2,\sigma_2^2),X,Y \; indep,Z=X+Y 
+		&\Rightarrow Z:(\mu_1+\mu_2,\sigma_1^2 + \sigma_2^2)
 \end{align*}
+
+\paragraph{Central Limit Theorm}
+Let $\overline{X} = \frac{1}{n} \sum_{i=1}^n X_i$ \\
+Let $\mu^* = \sum_{i=1}^n \mu_i$ \\
+Let $\sigma^* = \sqrt{ \sum_{i=1}^n \sigma_i^2 }$ \\
+Then $\frac{\overline{X} - \mu^*}{\sigma^*}:N(0,1)$
+
+\paragraph{Confidence Interval n > 30}
+\begin{align*}
+	\mbox{Sample Mean} & \; & E[\overline{X}] = \frac{1}{n} \sum_{i=1} x_i  = \mu \\
+	\mbox{Sample Variance} & \; &  s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \mu)^2 \\
+	\mbox{Confidence Interval} 
+		& \quad 
+		&  P( \overline{X} - 1.96 \frac{s}{\sqrt{n}}< \mu < \overline{X} + 1.96 \frac{s}{\sqrt{n}}) = 0.95
+\end{align*}
+
+\paragraph{Confidence Interval n < 30}
+$\overline{X} \pm t_{0.975,n-1} \frac{s}{\sqrt{n}}$ (two tail)
+
+\paragraph{Desired Width of Interval} Desired width is $2d$ then
+$m =(t_{0.975,n-1} \frac{s}{d})^2$
+
+\paragraph{Mean Hypothesis Testing}
+Let $H_0$ be the hypothesis that the population mean $\mu$ is the sample mean
+$\mu_0$ \\
+Let $t = \frac{\overline{X} - \mu_0}{\frac{s}{\sqrt{n}}}$ \\
+If $t > t_{0.975,n-1}$ reject $H_0$ \\
+otherwise do not reject
+
+\paragraph{Comparing Outcomes of Two Experiments (n=m)}
+Let $H_0$ be the hypothesis that the population mean population means are the
+same (IE: $\mu_1 - \mu_2 = 0$). \\
+Let $D_i = X_i - Y_i$ \\
+Reject is 0 is not in the interval
+$\overline{D} \pm t_{0.975,n-1} \frac{s_D}{\sqrt{n}}$ \\
+
+
+\paragraph{Distribution Interval Test}
+Let $H_0$ be the ovservations are drawn from the expected distribution \\
+Divide frequency of samples into k intervals (like histogram) \\
+Let $O_i$ be the observed frequency of interval i \\
+Let $E_i$ be the expected frequency of interval i \\
+Let $\chi^2 = \sum_{j=1}^k \frac{(O_j - E_j)^2}{E_j}$ \\
+Reject if $ \chi^2 > \chi_{0.95,k-1-c}^2 $
+
+\paragraph{Maximum Likelihood Esimaiton}
+Assume $X_1,X_2,...,X_n$ are independant \\
+Let $\theta$ be the parameters of the distribution \\
+Then $f_\theta(x_1,x_2,...,x_n) = \prod_{i=1}^n f(x_i)$ \\
+Let $L(\theta) = \prod_{i=1}^n f(x_i)$ \\
+Let $l(\theta) = \ln{\prod_{i=1}^n f(x_i)} = \sum_{i=1}^n \ln f(x_i)$ \\
+Take partial with respect to parameter and set it to zero to solve for parameters
