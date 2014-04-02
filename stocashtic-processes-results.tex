@@ -18,7 +18,7 @@ $p_{ij}^{(m)} = \sum_k p_{ik} p_{kj}^{(m-1)} = \sum_k p_{ik}^{(m-1)}p_{kj}$
 
 \paragraph{Recurrence}
 Let $f_j^{(n)}$ be the probability of first returning to j occurs n steps after leaving j. \\
-Let $f_j = sum_{n=1}^\infty f_j^{(n)}$, then
+Let $f_j = \sum_{n=1}^\infty f_j^{(n)}$, then
 state is recurrent $\iff f_j = 1$
 
 \paragraph{Recurrent Non-null}
@@ -104,7 +104,7 @@ j, given we have already stayed for s amount of time.
 \begin{align*}
 	\frac{\lambda_j}{\mu_j} &< 1 \qquad \mbox{for } j \ge j_0  \mbox{ then steady state converges }\\
 	p_0 &= \frac{1}{1 + \sum_{j=1}^\infty \prod_{i=0}^{j-1} \frac{\lambda_i}{\mu_{i+1}}} \\
-	p_j &= \prod_{i=1}^{j-1} \frac{\lambda_{i}}{\mu_{i+1}} p_0 \qquad j \ge 1
+	p_j &= \left ( \prod_{i=0}^{j-1} \frac{\lambda_{i}}{\mu_{i+1}} \right ) p_0 \qquad j \ge 1
 \end{align*}
 
 \paragraph{Performance Metrics}
